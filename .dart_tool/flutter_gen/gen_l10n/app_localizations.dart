@@ -242,6 +242,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Yes'**
   String get yes;
+
+  /// No description provided for @selectPath.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a folder'**
+  String get selectPath;
+
+  /// No description provided for @selectedPath.
+  ///
+  /// In en, this message translates to:
+  /// **'Selected path'**
+  String get selectedPath;
+
+  /// No description provided for @about.
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get about;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -78,4 +78,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get yes => 'Yes';
+
+  @override
+  String get selectPath => 'Choose a folder';
+
+  @override
+  String get selectedPath => 'Selected path';
+
+  @override
+  String get about => 'About';
 }

@@ -23,5 +23,8 @@
     "warning": "Atención",
     "deployConfirmationText": "¿Seguro que desea desplegar la fuente de datos? El proceso no se puede interrumpir por razones de seguridad y consistencia.",
     "no": "No",
-    "yes": "Sí"
+    "yes": "Sí",
+    "selectPath": "Seleccione una carpeta",
+    "selectedPath": "Carpeta seleccionada",
+    "about": "Acerca de..."
 }

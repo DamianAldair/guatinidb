@@ -78,4 +78,13 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get yes => 'Sí';
+
+  @override
+  String get selectPath => 'Seleccione una carpeta';
+
+  @override
+  String get selectedPath => 'Carpeta seleccionada';
+
+  @override
+  String get about => 'Acerca de...';
 }

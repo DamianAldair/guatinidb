@@ -23,5 +23,8 @@
     "warning": "Warning",
     "deployConfirmationText": "Are you sure you want to deploy the data source? The process cannot be interrupted for security and consistency reasons.",
     "no": "No",
-    "yes": "Yes"
+    "yes": "Yes",
+    "selectPath": "Choose a folder",
+    "selectedPath": "Selected path",
+    "about": "About"
 }
