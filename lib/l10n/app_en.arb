@@ -25,5 +25,6 @@
     "no": "No",
     "yes": "Yes",
     "selectPath": "Choose a folder",
-    "selectedPath": "Selected path"
+    "selectedPath": "Selected path",
+    "about": "About"
 }

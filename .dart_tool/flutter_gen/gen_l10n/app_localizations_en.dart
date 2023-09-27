@@ -84,4 +84,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get selectedPath => 'Selected path';
+
+  @override
+  String get about => 'About';
 }

@@ -25,5 +25,6 @@
     "no": "No",
     "yes": "Sí",
     "selectPath": "Seleccione una carpeta",
-    "selectedPath": "Carpeta seleccionada"
+    "selectedPath": "Carpeta seleccionada",
+    "about": "Acerca de..."
 }

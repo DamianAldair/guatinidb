@@ -84,4 +84,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get selectedPath => 'Carpeta seleccionada';
+
+  @override
+  String get about => 'Acerca de...';
 }

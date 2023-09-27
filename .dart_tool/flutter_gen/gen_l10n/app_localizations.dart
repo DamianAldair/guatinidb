@@ -254,6 +254,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Selected path'**
   String get selectedPath;
+
+  /// No description provided for @about.
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get about;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
