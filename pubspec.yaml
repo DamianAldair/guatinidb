@@ -1,0 +1,49 @@
+name: guatinidb
+description: A new Flutter project.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.2 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  adaptive_theme: any
+  archive: any
+  cupertino_icons: any
+  external_path: any
+  flutter_native_splash: any
+  intl: any
+  path: any
+  path_provider: any
+  permission_handler: any
+  sqflite: any
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_launcher_icons: any
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+  generate: true
+  assets:
+    - assets/icons/
+    - assets/db/
+
+flutter_icons:
+  image_path: "assets/icons/android_icon.png"
+  android: true 
+  image_path_android: "assets/icons/android_icon.png"
+  adaptive_icon_background: "assets/icons/android_adaptative_icon_bg.png"
+  adaptive_icon_foreground: "assets/icons/android_adaptative_icon_fg.png"
+
+flutter_native_splash:
+  android: true
+  color: "#FFFFFF"
+  color_dark: "#000000"
+  image: "assets/icons/android_icon.png"
