@@ -19,7 +19,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AdaptiveTheme(
-      debugShowFloatingThemeButton: true,
       light: ThemeData.light().copyWith(useMaterial3: true),
       dark: ThemeData.dark().copyWith(useMaterial3: true),
       initial: AdaptiveThemeMode.system,
