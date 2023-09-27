@@ -1,16 +1,7 @@
-# guatinidb
+# Guatiní DB - Fuente de datos
 
-A new Flutter project.
+Aplicación auxiliar para desplegar la fuente de datos utilizada por la app "Guatiní para su funcionamiento".
 
-## Getting Started
+## A comenzar
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Sólo instale la esta app y una vez desplegada la fuente de datos ya puede desinstalarse. La fuente de datos se mantendrá en el almacenamiento de su dispositivo.
