@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:guatinidb/pages/deploy_page.dart';
-import 'package:guatinidb/services/permissions.dart';
+import 'package:guatinidb/pages/browser_page.dart';
 import 'package:path/path.dart';
 
 class InfoPage extends StatelessWidget {
@@ -77,40 +76,13 @@ class InfoPage extends StatelessWidget {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton.extended(
-        icon: const Icon(Icons.save_alt_rounded),
-        label: Text(AppLocalizations.of(context).deploy),
-        onPressed: () => showDialog(
-          context: context,
-          builder: (context) => confirmation(context),
+        icon: const Icon(Icons.folder_open_rounded),
+        label: Text(AppLocalizations.of(context).selectPath),
+        onPressed: () => Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const BrowserPage()),
         ),
       ),
-    );
-  }
-
-  Widget confirmation(BuildContext context) {
-    return AlertDialog(
-      title: Text(AppLocalizations.of(context).warning),
-      content: Text(AppLocalizations.of(context).deployConfirmationText),
-      actions: [
-        TextButton(
-          child: Text(AppLocalizations.of(context).no),
-          onPressed: () => Navigator.pop(context),
-        ),
-        TextButton(
-          child: Text(AppLocalizations.of(context).yes),
-          onPressed: () {
-            Navigator.pop(context);
-            Permissions.check(
-              context: context,
-              permission: Permission.storage,
-              function: () => Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => const DeployPage()),
-              ),
-            );
-          },
-        ),
-      ],
     );
   }
 }

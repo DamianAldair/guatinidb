@@ -3,7 +3,9 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:guatinidb/services/deployment.dart';
 
 class DeployPage extends StatefulWidget {
-  const DeployPage({super.key});
+  final String deployPath;
+
+  const DeployPage(this.deployPath, {super.key});
 
   @override
   State<DeployPage> createState() => _DeployPageState();
@@ -14,7 +16,7 @@ class _DeployPageState extends State<DeployPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Deployment.deploy('/storage/emulated/0/navigatepage');
+      Deployment.deploy(widget.deployPath);
     });
   }
 
@@ -27,8 +29,9 @@ class _DeployPageState extends State<DeployPage> {
         if (canPop) {
           Deployment.deploymentDone.value = false;
           Deployment.error.value = false;
+          back(context);
         }
-        return Future.value(canPop);
+        return Future.value(false);
       },
       child: Scaffold(
         appBar: AppBar(
@@ -54,6 +57,10 @@ class _DeployPageState extends State<DeployPage> {
                       'assets/icons/android_icon.png',
                       width: MediaQuery.of(context).size.width / 2,
                     ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 20.0),
+                    child: Text('${AppLocalizations.of(context).selectedPath}: ${widget.deployPath}'),
                   ),
                   Container(
                     margin: const EdgeInsets.only(top: 20.0),
@@ -172,7 +179,7 @@ class _DeployPageState extends State<DeployPage> {
                       if (canPop) {
                         Deployment.deploymentDone.value = false;
                         Deployment.error.value = false;
-                        Navigator.pop(context);
+                        back(context);
                       }
                     },
                     icon: const Icon(Icons.done_rounded),
@@ -183,4 +190,6 @@ class _DeployPageState extends State<DeployPage> {
       ),
     );
   }
+
+  void back(BuildContext context) => Navigator.of(context).popUntil((route) => route.isFirst);
 }
