@@ -46,4 +46,4 @@ app.*.map.json
 /android/app/release
 
 # Data source from Author Tool
-assets/db/db.zipe
+assets/db/db.zip
