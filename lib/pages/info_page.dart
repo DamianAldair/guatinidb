@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:guatinidb/pages/browser_page.dart';
+import 'package:guatinidb/services/app_info.dart';
 import 'package:guatinidb/services/permissions.dart';
 import 'package:path/path.dart';
 
@@ -39,23 +40,14 @@ class InfoPage extends StatelessWidget {
                     style: const TextStyle(fontSize: 20.0),
                   ),
                 ),
-                FutureBuilder(
-                  future: rootBundle.loadString(join('assets', 'db', 'version')),
-                  builder: (_, AsyncSnapshot<String> snapshot) {
-                    if (snapshot.hasError || !snapshot.hasData) {
-                      return const SizedBox();
-                    }
-                    final version = snapshot.data!.trim();
-                    return Text('${AppLocalizations.of(context).dsVersion}: $version');
-                  },
-                ),
+                Text('${AppLocalizations.of(context).dsVersion}: ${AppInfo().version}'),
                 FutureBuilder(
                   future: rootBundle.loadString(join('assets', 'db', 'language')),
                   builder: (_, AsyncSnapshot<String> snapshot) {
                     if (snapshot.hasError || !snapshot.hasData) {
                       return const SizedBox();
                     }
-                    final lang = snapshot.data!.trim().split('\\\\\\').last;
+                    final lang = snapshot.data!.split('\n').first.trim();
                     return Text('${AppLocalizations.of(context).dsLanguage}: $lang');
                   },
                 ),

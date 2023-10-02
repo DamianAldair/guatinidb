@@ -17,6 +17,7 @@ dependencies:
   external_path: any
   flutter_native_splash: any
   intl: any
+  package_info_plus: any
   path: any
   path_provider: any
   permission_handler: any
