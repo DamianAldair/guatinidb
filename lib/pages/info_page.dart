@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:guatinidb/pages/browser_page.dart';
+import 'package:guatinidb/services/permissions.dart';
 import 'package:path/path.dart';
 
 class InfoPage extends StatelessWidget {
@@ -78,9 +79,13 @@ class InfoPage extends StatelessWidget {
       floatingActionButton: FloatingActionButton.extended(
         icon: const Icon(Icons.folder_open_rounded),
         label: Text(AppLocalizations.of(context).selectPath),
-        onPressed: () => Navigator.push(
-          context,
-          MaterialPageRoute(builder: (_) => const BrowserPage()),
+        onPressed: () => Permissions.check(
+          context: context,
+          permission: Permission.storage,
+          function: () => Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const BrowserPage()),
+          ),
         ),
       ),
     );
