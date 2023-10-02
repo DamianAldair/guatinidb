@@ -65,13 +65,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get done => 'Listo';
 
   @override
-  String get errorDeplying => 'Error al copiar los archivos.\nPuede ser que por nuevas políticas de Android no se pueda utilizar este directorio. Pruebe seleccionando otro.';
+  String get errorDeploying => 'Error al copiar los archivos.\nPuede ser que por nuevas políticas de Android no se pueda utilizar este directorio. Pruebe seleccionando otro.';
 
   @override
   String get warning => 'Atención';
 
   @override
-  String get deployConfirmationText => '¿Seguro que desea desplegar la fuente de datos? El proceso no se puede interrumpir por razones de seguridad y consistencia.';
+  String get deployConfirmationText => '¿Seguro que desea desplegar la fuente de datos? El proceso no se puede interrumpir por razones de seguridad y consistencia.\n\nTenga en cuenta que si ya existía una fuente de datos en esta carpeta se sobreescribirán los archivos con el mismo nombre.';
 
   @override
   String get no => 'No';
@@ -80,11 +80,35 @@ class AppLocalizationsEs extends AppLocalizations {
   String get yes => 'Sí';
 
   @override
+  String get ok => 'Aceptar';
+
+  @override
   String get selectPath => 'Seleccione una carpeta';
+
+  @override
+  String get androidPathPolicies => 'Por nuevas políticas de Android no se pueden utilizar directamente las rutas de las unidades de almacenamiento para el despliegue.';
 
   @override
   String get selectedPath => 'Carpeta seleccionada';
 
   @override
+  String get unselect => 'Quitar\nselección';
+
+  @override
   String get about => 'Acerca de...';
+
+  @override
+  String get closeExplorer => 'Cerrar explorador';
+
+  @override
+  String get close => 'Cerrar';
+
+  @override
+  String get levelUp => 'Carpeta anterior';
+
+  @override
+  String get noFolders => 'No hay directorios';
+
+  @override
+  String get noFoldersIn => 'No hay directorios en';
 }

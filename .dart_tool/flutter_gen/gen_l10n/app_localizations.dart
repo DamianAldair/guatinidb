@@ -213,11 +213,11 @@ abstract class AppLocalizations {
   /// **'Done'**
   String get done;
 
-  /// No description provided for @errorDeplying.
+  /// No description provided for @errorDeploying.
   ///
   /// In en, this message translates to:
   /// **'Error copying files.\nIt may due to new Android policies this directory cannot be used. Try selecting another one.'**
-  String get errorDeplying;
+  String get errorDeploying;
 
   /// No description provided for @warning.
   ///
@@ -228,7 +228,7 @@ abstract class AppLocalizations {
   /// No description provided for @deployConfirmationText.
   ///
   /// In en, this message translates to:
-  /// **'Are you sure you want to deploy the data source? The process cannot be interrupted for security and consistency reasons.'**
+  /// **'Are you sure you want to deploy the data source? The process cannot be interrupted for security and consistency reasons.\n\nPlease note that if a data source already existed in this folder, files with the same name will be overwritten.'**
   String get deployConfirmationText;
 
   /// No description provided for @no.
@@ -243,11 +243,23 @@ abstract class AppLocalizations {
   /// **'Yes'**
   String get yes;
 
+  /// No description provided for @ok.
+  ///
+  /// In en, this message translates to:
+  /// **'OK'**
+  String get ok;
+
   /// No description provided for @selectPath.
   ///
   /// In en, this message translates to:
   /// **'Choose a folder'**
   String get selectPath;
+
+  /// No description provided for @androidPathPolicies.
+  ///
+  /// In en, this message translates to:
+  /// **'Due to new Android policies, storage paths cannot be used derectly for deployment.'**
+  String get androidPathPolicies;
 
   /// No description provided for @selectedPath.
   ///
@@ -255,11 +267,47 @@ abstract class AppLocalizations {
   /// **'Selected path'**
   String get selectedPath;
 
+  /// No description provided for @unselect.
+  ///
+  /// In en, this message translates to:
+  /// **'Unselect'**
+  String get unselect;
+
   /// No description provided for @about.
   ///
   /// In en, this message translates to:
   /// **'About'**
   String get about;
+
+  /// No description provided for @closeExplorer.
+  ///
+  /// In en, this message translates to:
+  /// **'Close explorer'**
+  String get closeExplorer;
+
+  /// No description provided for @close.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get close;
+
+  /// No description provided for @levelUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Level up'**
+  String get levelUp;
+
+  /// No description provided for @noFolders.
+  ///
+  /// In en, this message translates to:
+  /// **'No folders'**
+  String get noFolders;
+
+  /// No description provided for @noFoldersIn.
+  ///
+  /// In en, this message translates to:
+  /// **'No folders in'**
+  String get noFoldersIn;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -65,13 +65,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get done => 'Done';
 
   @override
-  String get errorDeplying => 'Error copying files.\nIt may due to new Android policies this directory cannot be used. Try selecting another one.';
+  String get errorDeploying => 'Error copying files.\nIt may due to new Android policies this directory cannot be used. Try selecting another one.';
 
   @override
   String get warning => 'Warning';
 
   @override
-  String get deployConfirmationText => 'Are you sure you want to deploy the data source? The process cannot be interrupted for security and consistency reasons.';
+  String get deployConfirmationText => 'Are you sure you want to deploy the data source? The process cannot be interrupted for security and consistency reasons.\n\nPlease note that if a data source already existed in this folder, files with the same name will be overwritten.';
 
   @override
   String get no => 'No';
@@ -80,11 +80,35 @@ class AppLocalizationsEn extends AppLocalizations {
   String get yes => 'Yes';
 
   @override
+  String get ok => 'OK';
+
+  @override
   String get selectPath => 'Choose a folder';
+
+  @override
+  String get androidPathPolicies => 'Due to new Android policies, storage paths cannot be used derectly for deployment.';
 
   @override
   String get selectedPath => 'Selected path';
 
   @override
+  String get unselect => 'Unselect';
+
+  @override
   String get about => 'About';
+
+  @override
+  String get closeExplorer => 'Close explorer';
+
+  @override
+  String get close => 'Close';
+
+  @override
+  String get levelUp => 'Level up';
+
+  @override
+  String get noFolders => 'No folders';
+
+  @override
+  String get noFoldersIn => 'No folders in';
 }

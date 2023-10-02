@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:guatinidb/pages/info_page.dart';
+import 'package:guatinidb/widgets/logo.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
@@ -12,13 +13,7 @@ class WelcomePage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Hero(
-                tag: 'logo',
-                child: Image.asset(
-                  'assets/icons/android_icon.png',
-                  width: MediaQuery.of(context).size.width / 2,
-                ),
-              ),
+              const GuatiniDbLogo(),
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 20.0,

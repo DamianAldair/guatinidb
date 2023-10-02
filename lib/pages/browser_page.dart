@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:guatinidb/pages/deploy_page.dart';
 import 'package:guatinidb/services/permissions.dart';
+import 'package:guatinidb/widgets/placeholders.dart';
 import 'package:path/path.dart' as p;
 
 class BrowserPage extends StatefulWidget {
@@ -15,25 +16,16 @@ class BrowserPage extends StatefulWidget {
 }
 
 class _BrowserPageState extends State<BrowserPage> {
+  bool showStorageBanner = true;
   String? selected;
   String path = '';
 
   @override
   Widget build(BuildContext context) {
-    List<FileSystemEntity> content = [];
+    List<Directory> content = [];
     try {
-      content = Directory(path).listSync()
-        ..sort((a, b) {
-          final aDir = a is Directory;
-          final bDir = b is Directory;
-          if (aDir && !bDir) {
-            return -1;
-          } else if (!aDir && bDir) {
-            return 1;
-          } else {
-            return a.path.toLowerCase().compareTo(b.path.toLowerCase());
-          }
-        });
+      content = Directory(path).listSync().whereType<Directory>().toList()
+        ..sort((a, b) => a.path.toLowerCase().compareTo(b.path.toLowerCase()));
     } catch (_) {
       path = '';
     }
@@ -46,7 +38,7 @@ class _BrowserPageState extends State<BrowserPage> {
               if (storages.contains(path)) {
                 path = '';
               } else {
-                List<String> tree = path.split('/');
+                List<String> tree = p.split(path);
                 tree.removeLast();
                 path = p.joinAll(tree);
                 if (path[0] != '/') path = '/$path';
@@ -56,8 +48,51 @@ class _BrowserPageState extends State<BrowserPage> {
             },
       child: Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            tooltip: AppLocalizations.of(context).closeExplorer,
+            icon: const Icon(Icons.close_rounded),
+            onPressed: () => Navigator.pop(context),
+          ),
           title: Text(AppLocalizations.of(context).selectPath),
           centerTitle: true,
+          actions: [
+            if (path.isNotEmpty)
+              IconButton(
+                tooltip: AppLocalizations.of(context).levelUp,
+                icon: const Icon(Icons.drive_folder_upload_outlined),
+                onPressed: () => Navigator.maybePop(context),
+              ),
+          ],
+          bottom: path.isEmpty
+              ? null
+              : PreferredSize(
+                  preferredSize: const Size.fromHeight(40.0),
+                  child: Container(
+                    padding: const EdgeInsets.all(10.0),
+                    width: MediaQuery.of(context).size.width,
+                    child: Scrollbar(
+                      thickness: 1.5,
+                      radius: const Radius.circular(10.0),
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [
+                            for (final f in p.split(path)..removeWhere((e) => e == '/' || e == '\\'))
+                              Row(
+                                children: [
+                                  Text(f),
+                                  Icon(
+                                    Icons.chevron_right_rounded,
+                                    color: IconTheme.of(context).color?.withOpacity(0.5),
+                                  ),
+                                ],
+                              ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
         ),
         body: path.isEmpty
             ? FutureBuilder(
@@ -74,57 +109,80 @@ class _BrowserPageState extends State<BrowserPage> {
                     );
                   }
                   final storages = snapshot.data!;
-                  return ListView.builder(
-                    itemCount: storages.length,
-                    itemBuilder: (_, int i) {
-                      final storage = storages[i];
-                      return ListTile(
-                        leading: CircleAvatar(child: icon(storage)),
-                        title: Text(storageName(storage)),
-                        trailing: const Icon(Icons.chevron_right_rounded),
-                        onTap: () => setState(() => path = storage),
-                      );
-                    },
+                  return Column(
+                    children: [
+                      if (showStorageBanner)
+                        MaterialBanner(
+                          content: Text(AppLocalizations.of(context).androidPathPolicies),
+                          actions: [
+                            TextButton(
+                              child: Text(AppLocalizations.of(context).ok),
+                              onPressed: () => setState(() => showStorageBanner = !showStorageBanner),
+                            )
+                          ],
+                        ),
+                      ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: storages.length,
+                        itemBuilder: (_, int i) {
+                          final storage = storages[i];
+                          return ListTile(
+                            leading: CircleAvatar(child: icon(storage)),
+                            title: Text(storageName(storage)),
+                            subtitle: Text(storage),
+                            trailing: const Icon(Icons.chevron_right_rounded),
+                            onTap: () => setState(() => path = storage),
+                          );
+                        },
+                      ),
+                    ],
                   );
                 },
               )
-            : ListView.builder(
-                itemCount: Directory(path).listSync().length,
-                itemBuilder: (_, int i) {
-                  final dir = content[i];
-                  final padding = selected == null || dir != content.last ? 0.0 : 100.0;
-                  if (dir is! Directory) {
-                    return Padding(
-                      padding: EdgeInsets.only(bottom: padding),
-                      child: const SizedBox(),
-                    );
-                  }
-                  final name = p.basename(dir.path);
-                  return Padding(
-                    padding: EdgeInsets.only(bottom: padding),
-                    child: ListTile(
-                      leading: const Icon(Icons.folder_rounded),
-                      title: Text(name),
-                      trailing: Checkbox(
-                        value: selected == dir.path,
-                        onChanged: (_) => setState(() {
-                          if (selected == dir.path) {
-                            selected = null;
-                          } else {
-                            selected = dir.path;
-                          }
-                        }),
-                      ),
-                      onTap: () => setState(() => path = p.join(path, name)),
+            : content.isEmpty
+                ? const EmptyFolderPlaceholder()
+                : Scrollbar(
+                    radius: const Radius.circular(10.0),
+                    child: ListView.builder(
+                      itemCount: content.length,
+                      itemBuilder: (_, int i) {
+                        final dir = content[i];
+                        final padding = selected == null || dir != content.last ? 0.0 : 100.0;
+                        final name = p.basename(dir.path);
+                        return Padding(
+                          padding: EdgeInsets.only(bottom: padding),
+                          child: ListTile(
+                            leading: const Icon(Icons.folder_rounded),
+                            title: Text(name),
+                            trailing: Checkbox(
+                              value: selected == dir.path,
+                              onChanged: (_) => setState(() {
+                                if (selected == dir.path) {
+                                  selected = null;
+                                } else {
+                                  selected = dir.path;
+                                }
+                              }),
+                            ),
+                            onTap: () => setState(() => path = p.join(path, name)),
+                          ),
+                        );
+                      },
                     ),
-                  );
-                },
-              ),
+                  ),
         bottomNavigationBar: selected == null
             ? null
-            : Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text('${AppLocalizations.of(context).selectedPath}: $selected'),
+            : MaterialBanner(
+                content: Text('${AppLocalizations.of(context).selectedPath}: $selected'),
+                actions: [
+                  TextButton(
+                    child: Text(
+                      AppLocalizations.of(context).unselect,
+                      textAlign: TextAlign.right,
+                    ),
+                    onPressed: () => setState(() => selected = null),
+                  )
+                ],
               ),
         floatingActionButton: path.isEmpty || selected == null
             ? null
@@ -155,7 +213,7 @@ class _BrowserPageState extends State<BrowserPage> {
       return 'Almacenamiento interno';
     }
     if (storage.startsWith('/storage/') && storage.split('/').length == 3) {
-      return 'Tarjeta SD (${p.basename(storage)})';
+      return 'Tarjeta SD';
     }
     return '';
   }
@@ -163,7 +221,10 @@ class _BrowserPageState extends State<BrowserPage> {
   Widget confirmation(BuildContext context, String path) {
     return AlertDialog(
       title: Text(AppLocalizations.of(context).warning),
-      content: Text(AppLocalizations.of(context).deployConfirmationText),
+      content: Text(
+        AppLocalizations.of(context).deployConfirmationText,
+        textAlign: TextAlign.justify,
+      ),
       actions: [
         TextButton(
           child: Text(AppLocalizations.of(context).no),

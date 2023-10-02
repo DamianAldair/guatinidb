@@ -4,6 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:guatinidb/pages/browser_page.dart';
 import 'package:guatinidb/services/app_info.dart';
 import 'package:guatinidb/services/permissions.dart';
+import 'package:guatinidb/widgets/logo.dart';
 import 'package:path/path.dart';
 
 class InfoPage extends StatelessWidget {
@@ -22,13 +23,7 @@ class InfoPage extends StatelessWidget {
             padding: const EdgeInsets.all(20.0),
             child: Column(
               children: [
-                Hero(
-                  tag: 'logo',
-                  child: Image.asset(
-                    'assets/icons/android_icon.png',
-                    width: MediaQuery.of(context).size.width / 2,
-                  ),
-                ),
+                const GuatiniDbLogo(),
                 Padding(
                   padding: const EdgeInsets.only(
                     top: 50.0,
