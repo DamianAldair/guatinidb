@@ -34,5 +34,11 @@
     "close": "Close",
     "levelUp": "Level up",
     "noFolders": "No folders",
-    "noFoldersIn": "No folders in"
+    "noFoldersIn": "No folders in",
+    "informatonProvider": "Information provider",
+    "unavailable": "Unavailable",
+    "developedBy": "Developed by",
+    "and": "and",
+    "college": "School of Computer Engineering",
+    "university": "Technological University of Havana"
 }

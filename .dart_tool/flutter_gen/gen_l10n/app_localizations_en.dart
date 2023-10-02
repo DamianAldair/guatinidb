@@ -111,4 +111,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noFoldersIn => 'No folders in';
+
+  @override
+  String get informatonProvider => 'Information provider';
+
+  @override
+  String get unavailable => 'Unavailable';
+
+  @override
+  String get developedBy => 'Developed by';
+
+  @override
+  String get and => 'and';
+
+  @override
+  String get college => 'School of Computer Engineering';
+
+  @override
+  String get university => 'Technological University of Havana';
 }

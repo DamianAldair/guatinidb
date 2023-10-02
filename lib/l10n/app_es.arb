@@ -34,5 +34,11 @@
     "close": "Cerrar",
     "levelUp": "Carpeta anterior",
     "noFolders": "No hay directorios",
-    "noFoldersIn": "No hay directorios en"
+    "noFoldersIn": "No hay directorios en",
+    "informatonProvider": "Proveedor de información",
+    "unavailable": "No disponible",
+    "developedBy": "Desarrollado por",
+    "and": "y",
+    "college": "Facultad de Ingeniería informática",
+    "university": "Universidad Tecnológica de La Habana"
 }

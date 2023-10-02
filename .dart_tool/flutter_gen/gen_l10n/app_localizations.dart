@@ -308,6 +308,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No folders in'**
   String get noFoldersIn;
+
+  /// No description provided for @informatonProvider.
+  ///
+  /// In en, this message translates to:
+  /// **'Information provider'**
+  String get informatonProvider;
+
+  /// No description provided for @unavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Unavailable'**
+  String get unavailable;
+
+  /// No description provided for @developedBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Developed by'**
+  String get developedBy;
+
+  /// No description provided for @and.
+  ///
+  /// In en, this message translates to:
+  /// **'and'**
+  String get and;
+
+  /// No description provided for @college.
+  ///
+  /// In en, this message translates to:
+  /// **'School of Computer Engineering'**
+  String get college;
+
+  /// No description provided for @university.
+  ///
+  /// In en, this message translates to:
+  /// **'Technological University of Havana'**
+  String get university;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

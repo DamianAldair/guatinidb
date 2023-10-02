@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:guatinidb/pages/about_page.dart';
 import 'package:guatinidb/pages/browser_page.dart';
 import 'package:guatinidb/services/app_info.dart';
 import 'package:guatinidb/services/permissions.dart';
@@ -16,6 +17,16 @@ class InfoPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(AppLocalizations.of(context).dataSource),
         centerTitle: true,
+        actions: [
+          IconButton(
+            tooltip: AppLocalizations.of(context).about,
+            icon: const Icon(Icons.info_outline_rounded),
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const AboutPage()),
+            ),
+          ),
+        ],
       ),
       body: Center(
         child: SingleChildScrollView(

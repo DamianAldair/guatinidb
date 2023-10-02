@@ -111,4 +111,22 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get noFoldersIn => 'No hay directorios en';
+
+  @override
+  String get informatonProvider => 'Proveedor de información';
+
+  @override
+  String get unavailable => 'No disponible';
+
+  @override
+  String get developedBy => 'Desarrollado por';
+
+  @override
+  String get and => 'y';
+
+  @override
+  String get college => 'Facultad de Ingeniería informática';
+
+  @override
+  String get university => 'Universidad Tecnológica de La Habana';
 }
