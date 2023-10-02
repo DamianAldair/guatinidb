@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:guatinidb/pages/about_page.dart';
 import 'package:guatinidb/pages/browser_page.dart';
+import 'package:guatinidb/services/app_info.dart';
 import 'package:guatinidb/services/permissions.dart';
+import 'package:guatinidb/widgets/logo.dart';
 import 'package:path/path.dart';
 
 class InfoPage extends StatelessWidget {
@@ -14,6 +17,16 @@ class InfoPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(AppLocalizations.of(context).dataSource),
         centerTitle: true,
+        actions: [
+          IconButton(
+            tooltip: AppLocalizations.of(context).about,
+            icon: const Icon(Icons.info_outline_rounded),
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const AboutPage()),
+            ),
+          ),
+        ],
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -21,13 +34,7 @@ class InfoPage extends StatelessWidget {
             padding: const EdgeInsets.all(20.0),
             child: Column(
               children: [
-                Hero(
-                  tag: 'logo',
-                  child: Image.asset(
-                    'assets/icons/android_icon.png',
-                    width: MediaQuery.of(context).size.width / 2,
-                  ),
-                ),
+                const GuatiniDbLogo(),
                 Padding(
                   padding: const EdgeInsets.only(
                     top: 50.0,
@@ -39,23 +46,14 @@ class InfoPage extends StatelessWidget {
                     style: const TextStyle(fontSize: 20.0),
                   ),
                 ),
-                FutureBuilder(
-                  future: rootBundle.loadString(join('assets', 'db', 'version')),
-                  builder: (_, AsyncSnapshot<String> snapshot) {
-                    if (snapshot.hasError || !snapshot.hasData) {
-                      return const SizedBox();
-                    }
-                    final version = snapshot.data!.trim();
-                    return Text('${AppLocalizations.of(context).dsVersion}: $version');
-                  },
-                ),
+                Text('${AppLocalizations.of(context).dsVersion}: ${AppInfo().version}'),
                 FutureBuilder(
                   future: rootBundle.loadString(join('assets', 'db', 'language')),
                   builder: (_, AsyncSnapshot<String> snapshot) {
                     if (snapshot.hasError || !snapshot.hasData) {
                       return const SizedBox();
                     }
-                    final lang = snapshot.data!.trim().split('\\\\\\').last;
+                    final lang = snapshot.data!.split('\n').first.trim();
                     return Text('${AppLocalizations.of(context).dsLanguage}: $lang');
                   },
                 ),

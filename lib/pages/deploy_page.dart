@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:guatinidb/services/deployment.dart';
+import 'package:guatinidb/widgets/logo.dart';
 
 class DeployPage extends StatefulWidget {
   final String deployPath;
@@ -51,13 +52,7 @@ class _DeployPageState extends State<DeployPage> {
               padding: const EdgeInsets.all(20.0),
               child: Column(
                 children: [
-                  Hero(
-                    tag: 'logo',
-                    child: Image.asset(
-                      'assets/icons/android_icon.png',
-                      width: MediaQuery.of(context).size.width / 2,
-                    ),
-                  ),
+                  const GuatiniDbLogo(),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 20.0),
                     child: Text('${AppLocalizations.of(context).selectedPath}: ${widget.deployPath}'),
@@ -91,7 +86,7 @@ class _DeployPageState extends State<DeployPage> {
                                             ),
                                           ),
                                           Text(
-                                            AppLocalizations.of(context).errorDeplying,
+                                            AppLocalizations.of(context).errorDeploying,
                                             textAlign: TextAlign.justify,
                                           ),
                                         ],
@@ -123,7 +118,15 @@ class _DeployPageState extends State<DeployPage> {
                                                     ),
                                                     Padding(
                                                       padding: const EdgeInsets.symmetric(vertical: 10.0),
-                                                      child: Text(AppLocalizations.of(context).dsDecoding),
+                                                      child: ValueListenableBuilder(
+                                                        valueListenable: Deployment.dataSourceDeployment,
+                                                        builder: (_, int state, ___) {
+                                                          final done = state != Deployment.dataSourceDeploymentTotal
+                                                              ? ''
+                                                              : ' (${AppLocalizations.of(context).done})';
+                                                          return Text(AppLocalizations.of(context).dsDecoding + done);
+                                                        },
+                                                      ),
                                                     ),
                                                     ValueListenableBuilder(
                                                       valueListenable: Deployment.dataSourceDeployment,
@@ -137,7 +140,21 @@ class _DeployPageState extends State<DeployPage> {
                                                         top: 20.0,
                                                         bottom: 10.0,
                                                       ),
-                                                      child: Text(AppLocalizations.of(context).dsFileCopying),
+                                                      child: ValueListenableBuilder(
+                                                        valueListenable: Deployment.filesDeploymentTotal,
+                                                        builder: (_, int total, ___) {
+                                                          return ValueListenableBuilder(
+                                                            valueListenable: Deployment.filesDeployment,
+                                                            builder: (_, int state, ___) {
+                                                              final done = state != total
+                                                                  ? ''
+                                                                  : ' (${AppLocalizations.of(context).done})';
+                                                              return Text(
+                                                                  AppLocalizations.of(context).dsFileCopying + done);
+                                                            },
+                                                          );
+                                                        },
+                                                      ),
                                                     ),
                                                     ValueListenableBuilder(
                                                       valueListenable: Deployment.filesDeploymentTotal,

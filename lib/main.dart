@@ -4,11 +4,13 @@ import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:guatinidb/pages/welcome_page.dart';
+import 'package:guatinidb/services/app_info.dart';
 
 Future<void> main() async {
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  await AppInfo().init();
   runApp(const MyApp());
   FlutterNativeSplash.remove();
 }

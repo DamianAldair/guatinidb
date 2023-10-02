@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:guatinidb/pages/about_page.dart';
 import 'package:guatinidb/pages/info_page.dart';
+import 'package:guatinidb/widgets/logo.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
@@ -8,17 +10,29 @@ class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(MediaQuery.of(context).padding.top + kToolbarHeight),
+        child: SafeArea(
+          child: Row(
+            children: [
+              const Spacer(),
+              IconButton(
+                tooltip: AppLocalizations.of(context).about,
+                icon: const Icon(Icons.info_outline_rounded),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const AboutPage()),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
       body: Center(
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Hero(
-                tag: 'logo',
-                child: Image.asset(
-                  'assets/icons/android_icon.png',
-                  width: MediaQuery.of(context).size.width / 2,
-                ),
-              ),
+              const GuatiniDbLogo(),
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 20.0,
