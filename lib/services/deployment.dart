@@ -13,7 +13,7 @@ abstract class Deployment {
   static ValueNotifier<int> filesDeploymentTotal = ValueNotifier(1);
   static ValueNotifier<bool> deploying = ValueNotifier(false);
   static ValueNotifier<bool> deploymentDone = ValueNotifier(false);
-  static ValueNotifier<bool> error = ValueNotifier(false);
+  static ValueNotifier<String?> error = ValueNotifier(null);
 
   static Future<void> deploy(String path) async {
     deploying.value = true;
@@ -37,7 +37,7 @@ abstract class Deployment {
       }
     } catch (e) {
       dev.log(e.toString());
-      error.value = true;
+      error.value = e.toString();
     }
     dataSourceDeployment.value = 0;
     filesDeployment.value = 0;
