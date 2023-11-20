@@ -29,7 +29,7 @@ abstract class Deployment {
         final a = archive[i];
         final aPath = join(path, a.name);
         if (!a.isFile && !a.isSymbolicLink) {
-          await Directory(aPath).create(recursive: true);
+          Directory(aPath).createSync(recursive: true);
         } else if (!a.isSymbolicLink) {
           await File(aPath).writeAsBytes(a.content as List<int>);
         }
