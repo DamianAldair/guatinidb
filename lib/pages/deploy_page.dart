@@ -76,7 +76,7 @@ class _DeployPageState extends State<DeployPage> {
                             ValueListenableBuilder(
                               valueListenable: Deployment.error,
                               builder: (_, String? error, ___) {
-                                return error == null
+                                return error != null
                                     ? Column(
                                         children: [
                                           const Padding(
