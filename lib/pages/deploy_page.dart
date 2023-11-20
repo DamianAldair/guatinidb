@@ -22,6 +22,7 @@ class _DeployPageState extends State<DeployPage> {
   }
 
   bool canPop = false;
+  bool isExpanded = false;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,7 @@ class _DeployPageState extends State<DeployPage> {
       onWillPop: () {
         if (canPop) {
           Deployment.deploymentDone.value = false;
-          Deployment.error.value = false;
+          Deployment.error.value = null;
           back(context);
         }
         return Future.value(false);
@@ -74,8 +75,8 @@ class _DeployPageState extends State<DeployPage> {
                             ),
                             ValueListenableBuilder(
                               valueListenable: Deployment.error,
-                              builder: (_, bool error, ___) {
-                                return error
+                              builder: (_, String? error, ___) {
+                                return error == null
                                     ? Column(
                                         children: [
                                           const Padding(
@@ -88,6 +89,33 @@ class _DeployPageState extends State<DeployPage> {
                                           Text(
                                             AppLocalizations.of(context).errorDeploying,
                                             textAlign: TextAlign.justify,
+                                          ),
+                                          const SizedBox.square(dimension: 20.0),
+                                          ExpansionPanelList(
+                                            expansionCallback: (_, __) => setState(() => isExpanded = !isExpanded),
+                                            children: [
+                                              ExpansionPanel(
+                                                isExpanded: isExpanded,
+                                                headerBuilder: (_, bool isExpanded) {
+                                                  return Center(
+                                                    child: Padding(
+                                                      padding: const EdgeInsets.all(10.0),
+                                                      child: Text(
+                                                        AppLocalizations.of(context).systemErrorResponse,
+                                                        textAlign: TextAlign.center,
+                                                      ),
+                                                    ),
+                                                  );
+                                                },
+                                                body: Padding(
+                                                  padding: const EdgeInsets.all(10.0),
+                                                  child: Text(
+                                                    error.toString(),
+                                                    textAlign: TextAlign.left,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ],
                                       )
@@ -195,7 +223,7 @@ class _DeployPageState extends State<DeployPage> {
                     onPressed: () {
                       if (canPop) {
                         Deployment.deploymentDone.value = false;
-                        Deployment.error.value = false;
+                        Deployment.error.value = null;
                         back(context);
                       }
                     },

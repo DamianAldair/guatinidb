@@ -219,6 +219,12 @@ abstract class AppLocalizations {
   /// **'Error copying files.\nIt may due to new Android policies this directory cannot be used. Try selecting another one.'**
   String get errorDeploying;
 
+  /// No description provided for @systemErrorResponse.
+  ///
+  /// In en, this message translates to:
+  /// **'System response:'**
+  String get systemErrorResponse;
+
   /// No description provided for @warning.
   ///
   /// In en, this message translates to:

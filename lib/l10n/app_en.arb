@@ -20,6 +20,7 @@
     "dsFileCopying": "Copying files",
     "done": "Done",
     "errorDeploying": "Error copying files.\nIt may due to new Android policies this directory cannot be used. Try selecting another one.",
+    "systemErrorResponse": "System response:",
     "warning": "Warning",
     "deployConfirmationText": "Are you sure you want to deploy the data source? The process cannot be interrupted for security and consistency reasons.\n\nPlease note that if a data source already existed in this folder, files with the same name will be overwritten.",
     "no": "No",

@@ -68,6 +68,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get errorDeploying => 'Error copying files.\nIt may due to new Android policies this directory cannot be used. Try selecting another one.';
 
   @override
+  String get systemErrorResponse => 'System response:';
+
+  @override
   String get warning => 'Warning';
 
   @override
