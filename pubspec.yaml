@@ -14,6 +14,7 @@ dependencies:
   adaptive_theme: any
   archive: any
   cupertino_icons: any
+  device_info_plus: any
   external_path: any
   flutter_native_splash: any
   intl: any

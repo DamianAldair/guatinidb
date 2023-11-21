@@ -77,9 +77,8 @@ class InfoPage extends StatelessWidget {
       floatingActionButton: FloatingActionButton.extended(
         icon: const Icon(Icons.folder_open_rounded),
         label: Text(AppLocalizations.of(context).selectPath),
-        onPressed: () => Permissions.check(
+        onPressed: () => StoragePermission.check(
           context: context,
-          permission: Permission.storage,
           function: () => Navigator.push(
             context,
             MaterialPageRoute(builder: (_) => const BrowserPage()),
