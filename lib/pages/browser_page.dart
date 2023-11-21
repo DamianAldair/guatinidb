@@ -234,9 +234,8 @@ class _BrowserPageState extends State<BrowserPage> {
           child: Text(AppLocalizations.of(context).yes),
           onPressed: () {
             Navigator.pop(context);
-            Permissions.check(
+            StoragePermission.check(
               context: context,
-              permission: Permission.storage,
               function: () => Navigator.push(
                 context,
                 MaterialPageRoute(builder: (_) => DeployPage(path)),
