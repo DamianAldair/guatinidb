@@ -50,6 +50,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get cannotOpenSettings => 'No se puede abrir la pantalla de permisos de la apliación.\nNo se puede conceder el permiso solicitado.\nNecesita conceder el permiso manualmente en la pantalla de permisos de la aplicación.';
 
   @override
+  String get errorLoadingStorages => 'Hubo un error al cargar el almacenamiento';
+
+  @override
   String get processStatus => 'Estado del proceso';
 
   @override
