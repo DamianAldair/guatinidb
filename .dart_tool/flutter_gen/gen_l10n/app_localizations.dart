@@ -183,6 +183,12 @@ abstract class AppLocalizations {
   /// **'Cannot open the app settings.\nThe requested permission cannot be granted.\nYou need grant the permission manually in the app settings.'**
   String get cannotOpenSettings;
 
+  /// No description provided for @errorLoadingStorages.
+  ///
+  /// In en, this message translates to:
+  /// **'An error occurred loading storage'**
+  String get errorLoadingStorages;
+
   /// No description provided for @processStatus.
   ///
   /// In en, this message translates to:

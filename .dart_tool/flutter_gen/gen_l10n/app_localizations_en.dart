@@ -50,6 +50,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get cannotOpenSettings => 'Cannot open the app settings.\nThe requested permission cannot be granted.\nYou need grant the permission manually in the app settings.';
 
   @override
+  String get errorLoadingStorages => 'An error occurred loading storage';
+
+  @override
   String get processStatus => 'Process status';
 
   @override

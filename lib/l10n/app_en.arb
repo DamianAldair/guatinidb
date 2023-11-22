@@ -14,6 +14,7 @@
     "mapFiles": "Map files",
     "cancel": "Cancel",
     "cannotOpenSettings": "Cannot open the app settings.\nThe requested permission cannot be granted.\nYou need grant the permission manually in the app settings.",
+    "errorLoadingStorages": "An error occurred loading storage",
     "processStatus": "Process status",
     "dsDeployed": "Data source deployed",
     "dsDecoding": "Processing data source",

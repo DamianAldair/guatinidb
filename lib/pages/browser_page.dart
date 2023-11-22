@@ -16,6 +16,7 @@ class BrowserPage extends StatefulWidget {
 }
 
 class _BrowserPageState extends State<BrowserPage> {
+  bool isExpanded = false;
   bool showStorageBanner = true;
   String? selected;
   String path = '';
@@ -99,8 +100,46 @@ class _BrowserPageState extends State<BrowserPage> {
                 future: ExternalPath.getExternalStorageDirectories(),
                 builder: (_, AsyncSnapshot<List<String>> snapshot) {
                   if (snapshot.hasError) {
-                    return const Center(
-                      child: Text('Hubo un error al cargar el almacenamiento'),
+                    return Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              AppLocalizations.of(context).errorLoadingStorages,
+                              textAlign: TextAlign.center,
+                            ),
+                            const SizedBox.square(dimension: 20.0),
+                            ExpansionPanelList(
+                              expansionCallback: (_, __) => setState(() => isExpanded = !isExpanded),
+                              children: [
+                                ExpansionPanel(
+                                  isExpanded: isExpanded,
+                                  headerBuilder: (_, bool isExpanded) {
+                                    return Center(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(10.0),
+                                        child: Text(
+                                          AppLocalizations.of(context).systemErrorResponse,
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  body: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Text(
+                                      snapshot.error?.toString() ?? 'Unknown error',
+                                      textAlign: TextAlign.left,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
                     );
                   }
                   if (!snapshot.hasData) {

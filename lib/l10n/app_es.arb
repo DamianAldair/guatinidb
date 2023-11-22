@@ -14,6 +14,7 @@
     "mapFiles": "Archivos de mapa",
     "cancel": "Cancelar",
     "cannotOpenSettings": "No se puede abrir la pantalla de permisos de la apliación.\nNo se puede conceder el permiso solicitado.\nNecesita conceder el permiso manualmente en la pantalla de permisos de la aplicación.",
+    "errorLoadingStorages": "Hubo un error al cargar el almacenamiento",
     "processStatus": "Estado del proceso",
     "dsDeployed": "Fuente de datos desplegada",
     "dsDecoding": "Procesando fuente de datos",
